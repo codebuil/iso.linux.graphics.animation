@@ -42,6 +42,7 @@ int main(){
 	system(e);
 	sprintf(e,"rm %s",ss);
 	system(e);
+	sprint(e,"bash -c 'while read m;do;printf   \"$m\" | ./ldd_filter > /tmp/%s.txt;j=$(cat /tmp/filter2.txt)zip %s.zip $j;done<./%s.txt;'",ss,ss,ss);
 	sprintf(e,"rm %s.txt",ss);
 	system(e);
 	printf("http:/localhost:8080/%s.zip",ss);
