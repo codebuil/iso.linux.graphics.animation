@@ -43,9 +43,7 @@ int main(){
 	system(e);
 	sprintf(e,"rm %s",ss);
 	system(e);
-	sprintf(e,"printf \"%s\"",ss);
-	system(e);
-	sprintf(e,"printf \"%s\";while read m;do;printf   \"$m\" | ./ldd_filter > //tmp//A%s.txt;j=$(cat //tmp//A%s.txt);zip %s.zip $j;done<.//%s.txt;",ss,ss,ss,ss,ss);
+	sprintf(e,"sh -c 'while read m;do printf   \"$m\" | ./ldd_filter > //tmp//A%s.txt;j=$(cat //tmp//A%s.txt);zip %s.zip $j;done<.//%s.txt;'",ss,ss,ss,ss,ss);
 	system(e);
 	sprintf(e,"rm %s.txt",ss);
 	system(e);
