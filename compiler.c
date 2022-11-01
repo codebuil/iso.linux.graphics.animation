@@ -30,8 +30,14 @@ int main(){
 	system(e);
 	sprintf(e,"gcc -o %s /tmp/%s.c",ss,ss);
 	system(e);
+	sprintf(e,"zip %s.zip  %s",ss,ss);
+	system(e);
+	sprintf(e,"zip %s.zip  /tmp/%s.c",ss,ss);
+	system(e);
 	sprintf(e,"rm /tmp/%s.c",ss);
 	system(e);
-	printf("http:/localhost:8080/%s",ss);
+	sprintf(e,"rm %s",ss);
+	system(e);
+	printf("http:/localhost:8080/%s.zip",ss);
 	return 0;
 }
