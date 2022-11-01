@@ -33,7 +33,7 @@ int main(){
 			system("python -m CGIHTTPServer 8080 &");
 		}
 		
-		sleep(30);
+		sleep(59);
 	}
 	return 0;
 }

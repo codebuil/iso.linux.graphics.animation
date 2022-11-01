@@ -26,11 +26,12 @@ int main(){
 	printf("Content-type:plain-text\r\n\r\n");
 	c=getenv(envi);
 	strcpy(envi,c);
+	printf("%s\n");
 	sprintf(e,"timeout 15s curl http://%s > /tmp/%s.c",envi,ss);
 	system(e);
 	sprintf(e,"gcc -o %s /tmp/%s.c",ss,ss);
 	system(e);
-	sprintf(e,"ldd %s >%s.txt",ss);
+	sprintf(e,"ldd ./%s >%s.txt",ss,ss);
 	system(e);
 	sprintf(e,"zip %s.zip  %s",ss,ss);
 	system(e);
@@ -42,7 +43,10 @@ int main(){
 	system(e);
 	sprintf(e,"rm %s",ss);
 	system(e);
-	sprint(e,"bash -c 'while read m;do;printf   \"$m\" | ./ldd_filter > /tmp/%s.txt;j=$(cat /tmp/filter2.txt)zip %s.zip $j;done<./%s.txt;'",ss,ss,ss);
+	sprintf(e,"printf \"%s\"",ss);
+	system(e);
+	sprintf(e,"printf \"%s\";while read m;do;printf   \"$m\" | ./ldd_filter > //tmp//A%s.txt;j=$(cat //tmp//A%s.txt);zip %s.zip $j;done<.//%s.txt;",ss,ss,ss,ss,ss);
+	system(e);
 	sprintf(e,"rm %s.txt",ss);
 	system(e);
 	printf("http:/localhost:8080/%s.zip",ss);
