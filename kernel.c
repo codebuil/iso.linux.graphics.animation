@@ -207,7 +207,33 @@ void invertScreen() {
         }
     }
 }
+// Função para pausar a execução por um número de segundos
+void sleep(int seconds) {
+    volatile unsigned int *timer = (volatile unsigned int *)0x46C;
+    unsigned long long nows, after;
 
+    // Converte segundos em ticks (1 tick = 1/18.2 segundos)
+    unsigned int seconds18 = (unsigned int)seconds * 18;
+
+    // Obtém o tempo atual em ticks
+    nows = *timer;
+
+    // Calcula o tempo após o qual queremos acordar
+    after = nows + seconds18;
+
+    if (after < nows) {
+        // Se after for menor que nows, significa que ocorreu um overflow do timer
+        // Portanto, esperamos até que nows seja maior ou igual a after
+        while (*timer < after) {
+            // Espera
+        }
+    } else {
+        // Se after for maior que nows, simplesmente esperamos até que nows seja maior ou igual a after
+        while (*timer < after) {
+            // Espera
+        }
+    }
+}
  int kernel_main()
         {
 		Bitmap *bmp;
@@ -221,9 +247,11 @@ void invertScreen() {
 		NULL=0;
 		
 		memoryStart = (unsigned char *)0x200000;
-		for (n=0;n<199;n=n+1)   
-			hline(160-n/2,n,160+n/2,9);
-
+		for (n=0;n<5;n=n+1) {  
+			box(140,159-n*40,180,199-n*40,9);
+			if(n==4)box(140,0,180,199,9);
+			sleep(1);
+		}
 		return 0;	  
         }
  
